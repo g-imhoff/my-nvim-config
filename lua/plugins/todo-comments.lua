@@ -18,4 +18,4 @@ return {
 
     todo_comments.setup()
   end,
-
+}
