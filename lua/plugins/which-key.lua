@@ -8,13 +8,6 @@ return {
   },
   keys = {
     {
-      "<leader>?",
-      function()
-        require("which-key").show({ global = false })
-      end,
-      desc = "Buffer Local Keymaps (which-key)",
-    },
-    {
       "<leader>f",
       function()
         require("which-key").show({ global = false })
@@ -27,6 +20,13 @@ return {
         require("which-key").show({ global = false })
       end,
       desc = "Trouble",
+    },
+    {
+      "<leader>d",
+      function()
+        require("which-key").show({ global = false })
+      end,
+      desc = "Diagnostic",
     },
   },
 }

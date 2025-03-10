@@ -28,12 +28,17 @@ return {
       -- list of servers for mason to install
       ensure_installed = {
         "clangd",
+        "pyright",
+        "ts_ls"
       },
     })
 
     mason_tool_installer.setup({
       ensure_installed = {
+        "autoflake",
         "prettier", -- prettier formatter
+        "flake8",
+        "node-debug2-adapter"
       },
     })
   end,
