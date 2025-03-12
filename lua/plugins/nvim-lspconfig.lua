@@ -9,5 +9,7 @@ return {
     lspconfig['clangd'].setup({ capabilities = capabilities })
     lspconfig['pyright'].setup({ capabilities = capabilities })
     lspconfig['ts_ls'].setup({ capabilities = capabilities })
+    lspconfig['dockerls'].setup({ capabilities = capabilities })
+    lspconfig['docker_compose_language_service'].setup({ capabilities = capabilities })
   end
 }
