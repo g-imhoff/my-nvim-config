@@ -1,15 +1,11 @@
 return {
   'saghen/blink.cmp',
+  dependencies = { 'rafamadriz/friendly-snippets' },
 
-  dependencies = 'rafamadriz/friendly-snippets',
-
-  build = "cargo build --release",
-
-  version = '*',
-
+  version = '0.13.1',
   opts = {
-    keymap = { 
-      preset = 'none', 
+    keymap = {
+      preset = 'none',
       ['<S-Tab>'] = { 'select_prev', 'fallback' },
       ['<Tab>'] = { 'select_next', 'fallback' },
       ['<Enter>'] = { 'accept', 'fallback' },
@@ -20,9 +16,19 @@ return {
     },
 
     sources = {
-      default = { 'lsp', 'path', 'snippets', 'buffer' },
+      default = { 'lsp', 'path', 'buffer', 'snippets' }, 
     },
 
-    fuzzy = { implementation = "prefer_rust_with_warning" }
+    signature = { enabled = true }, 
+
+    fuzzy = { implementation = "prefer_rust_with_warning" },
+
+    completion = {
+      documentation = {
+        auto_show = true,
+      },
+    },
   },
+
+  opts_extend = { 'sources.default' },
 }
