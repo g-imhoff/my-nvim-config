@@ -19,16 +19,25 @@ return {
       default = { 'lsp', 'path', 'buffer', 'snippets' }, 
     },
 
-    signature = { enabled = true }, 
-
-    fuzzy = { implementation = "prefer_rust_with_warning" },
-
-    completion = {
-      documentation = {
-        auto_show = true,
+    signature = { 
+      enabled = true, 
+      trigger = {
+        enabled = true, 
+        show_on_keyword = true,
+        show_on_insert = true,
       },
     },
-  },
+  }, 
 
+  fuzzy = { implementation = "prefer_rust_with_warning" },
+
+  completion = {
+    documentation = {
+      auto_show = true,
+      auto_show_delay_ms = 500,
+      update_delay_ms = 50,
+      treesitter_highlighting = true,
+    },
+  },
   opts_extend = { 'sources.default' },
 }
