@@ -1,15 +1,26 @@
 return {
-  'neovim/nvim-lspconfig',
-  dependencies = { 'saghen/blink.cmp' },
+	"neovim/nvim-lspconfig",
+	dependencies = { "saghen/blink.cmp" },
 
-  config = function()
-    local capabilities = require('blink.cmp').get_lsp_capabilities(vim.lsp.protocol.make_client_capabilities())
-    local lspconfig = require('lspconfig')
+	opts = {
+		servers = {
+			lua_ls = {},
+			clangd = {},
+			omnisharp = {
+				cmd = { "OmniSharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid()) },
+			},
+			pyright = {},
+			ts_ls = {},
+		},
+	},
 
-    lspconfig['clangd'].setup({ capabilities = capabilities })
-    lspconfig['pyright'].setup({ capabilities = capabilities })
-    lspconfig['ts_ls'].setup({ capabilities = capabilities })
-    lspconfig['dockerls'].setup({ capabilities = capabilities })
-    lspconfig['docker_compose_language_service'].setup({ capabilities = capabilities })
-  end
+	config = function(_, opts)
+		local lspconfig = require("lspconfig")
+		for server, config in pairs(opts.servers) do
+			-- passing config.capabilities to blink.cmp merges with the capabilities in your
+			-- `opts[server].capabilities, if you've defined it
+			config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
+			lspconfig[server].setup(config)
+		end
+	end,
 }
